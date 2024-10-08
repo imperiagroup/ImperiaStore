@@ -25,12 +25,11 @@ onMounted(async () => {
 
 const resetPassword = async () => {
   try {
-    const { data } = await $shopifyClient.request(GET_CUSTOMER_ID_BY_EMAIL, {
+    const { data } = await $shopifyClient.request(RESET_PASSWORD, {
       variables: {
-        email: `email:${email.value}`, // Using email value
+        email: email.value,
       },
     });
-    console.log("data: ", data);
     if (data.customerRecover !== null) {
       console.log("emailvalue: ", email.value);
       isConfirmEmail.value = true;
