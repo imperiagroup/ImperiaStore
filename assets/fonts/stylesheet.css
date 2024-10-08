@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "GTZirkon-Regular";
+  src:
+    url("GTZirkon-Regular.woff2") format("woff2"),
+    url("GTZirkon-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GTZirkon-Italic";
+  src:
+    url("GTZirkon-Italic.woff2") format("woff2"),
+    url("GTZirkon-Italic.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GTZirkon-Bold";
+  src:
+    url("GTZirkon-Bold.woff2") format("woff2"),
+    url("GTZirkon-Bold.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GTZirkon-BoldItalic";
+  src:
+    url("GTZirkon-BoldItalic.woff2") format("woff2"),
+    url("GTZirkon-BoldItalic.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
