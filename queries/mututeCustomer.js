@@ -119,6 +119,8 @@ export const UPDATE_CUSTOMER_PROFILE = `mutation customerUpdate($customerAccessT
     customer {
       id
       phone
+      firstName
+      lastName
       acceptsMarketing
     }
     customerUserErrors {

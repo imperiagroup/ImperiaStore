@@ -25,10 +25,12 @@ const saveChanges = async () => {
   const newPhoneNumber = userInfo.value.phoneNumber; // Ensure this is getting the correct new phone number
   const titleValue = userInfo.value.title;
   const birthDate = userInfo.value.DOB;
-  // const customerInput = {
-  //   phone: newPhoneNumber,
-  //   acceptsMarketing: isAcceptMarketing.value,
-  // };
+  const customerInput = {
+    phone: newPhoneNumber,
+    lastName: userInfo.value.lastName,
+    firstName: userInfo.value.firstName,
+    acceptsMarketing: isAcceptMarketing.value,
+  };
   // const customerInput = {
   //   id: customerID.value, // It only has the identifier issue
   //   metafields: [
@@ -55,32 +57,32 @@ const saveChanges = async () => {
       value: "Mrs",
     },
   ];
-  const customerInput = {
-    metafields: [
-      {
-        namespace: "custom",
-        key: "title",
-        value: titleValue,
-      },
-      {
-        namespace: "facts",
-        key: "birth_date",
-        value: birthDate,
-      },
-    ],
-  };
+  // const customerInput = {
+  //   metafields: [
+  //     {
+  //       namespace: "custom",
+  //       key: "title",
+  //       value: titleValue,
+  //     },
+  //     {
+  //       namespace: "facts",
+  //       key: "birth_date",
+  //       value: birthDate,
+  //     },
+  //   ],
+  // };
   try {
-    // await $shopifyClient.request(UPDATE_CUSTOMER_PROFILE, {
-    //   variables: {
-    //     customer: customerInput,
-    //     customerAccessToken: accessToken,
-    //   },
-    // });
-    await $shopifyClient.request(CUSTOMER_PROFILE, {
+    await $shopifyClient.request(UPDATE_CUSTOMER_PROFILE, {
       variables: {
-        metafields: metafields,
+        customer: customerInput,
+        customerAccessToken: accessToken,
       },
     });
+    // await $shopifyClient.request(CUSTOMER_PROFILE, {
+    //   variables: {
+    //     metafields: metafields,
+    //   },
+    // });
 
     alert("Profile updated successfully");
   } catch (error) {

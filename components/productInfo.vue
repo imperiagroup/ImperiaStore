@@ -19,21 +19,15 @@ const cartId = localStorage.getItem("cartId");
 const { $shopifyClient } = useNuxtApp();
 const addToCart = async () => {
   try {
-    detectIncognito().then(async (result) => {
-      if (!result.isPrivate) {
-        if (size) {
-          await $shopifyClient.request(ADD_TO_CART, {
-            variables: {
-              cartId: cartId,
-              merchandiseId: size.value,
-            },
-          });
-        }
-        await cartStore.fetchCart(cartId);
-      } else {
-        alert("Add to Bag functionality is not available in private mode");
-      }
-    });
+    if (size) {
+      await $shopifyClient.request(ADD_TO_CART, {
+        variables: {
+          cartId: cartId,
+          merchandiseId: size.value,
+        },
+      });
+    }
+    await cartStore.fetchCart(cartId);
   } catch (error) {
     console.log(error);
   }
