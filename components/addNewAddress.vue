@@ -101,7 +101,7 @@ const handleSubmission = async () => {
       </div>
       <div class="form-control space-y-4 w-full mx-auto uppercase">
         <div class="space-y-4">
-          <countries-selector />
+          <countries-selector :selected-country="addressForm.country" />
 
           <input
             type="text"
@@ -166,6 +166,7 @@ export default {
       if (dialog) {
         dialog.close();
       }
+      window.location.reload();
     },
   },
 };

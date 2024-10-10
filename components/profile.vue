@@ -9,7 +9,7 @@ import {
 
 const { $shopifyClient } = useNuxtApp();
 const loading = ref(true);
-const isAcceptMarketing = ref(false);
+const isnotification = ref(false);
 const customerID = ref("");
 const titleID = ref("");
 const userInfo = ref({
@@ -19,6 +19,8 @@ const userInfo = ref({
   email: "",
   DOB: "",
   phoneNumber: 0,
+  acceptsMarketing: false,
+  isnotification: false,
 });
 const saveChanges = async () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -29,7 +31,7 @@ const saveChanges = async () => {
     phone: newPhoneNumber,
     lastName: userInfo.value.lastName,
     firstName: userInfo.value.firstName,
-    acceptsMarketing: isAcceptMarketing.value,
+    acceptsMarketing: userInfo.value.acceptsMarketing,
   };
   // const customerInput = {
   //   id: customerID.value, // It only has the identifier issue
@@ -78,6 +80,19 @@ const saveChanges = async () => {
         customerAccessToken: accessToken,
       },
     });
+    if (localStorage.getItem("profileNotification")) {
+      localStorage.removeItem("profileNotification");
+      localStorage.setItem(
+        "profileNotification",
+        userInfo.value.isnotification
+      );
+    } else {
+      localStorage.setItem(
+        "profileNotification",
+        userInfo.value.isnotification
+      );
+    }
+
     // await $shopifyClient.request(CUSTOMER_PROFILE, {
     //   variables: {
     //     metafields: metafields,
@@ -106,6 +121,8 @@ onMounted(async () => {
         lastName: data.customer.lastName,
         DOB: data.customer.metafields[1]?.value,
         phoneNumber: data.customer.phone,
+        acceptsMarketing: data.customer.acceptsMarketing,
+        isnotification: localStorage.getItem("profileNotification"),
       };
       customerID.value = data.customer.id;
     }
@@ -163,7 +180,7 @@ onMounted(async () => {
     <div class="justify-between space-y-4 pt-4">
       <div>
         <input
-          v-model="isAcceptMarketing"
+          v-model="userInfo.acceptsMarketing"
           type="checkbox"
           id="checkbox-1"
           class="align-middle appearance-none w-4 h-4 border border-black rounded-none checked:text-black"
@@ -175,6 +192,7 @@ onMounted(async () => {
       </div>
       <div>
         <input
+          v-model="userInfo.isnotification"
           type="checkbox"
           id="checkbox-2"
           class="align-middle appearance-none w-4 h-4 border border-black rounded-none checked:text-black"

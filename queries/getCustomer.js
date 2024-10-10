@@ -7,6 +7,7 @@ query ($customerAccessToken: String!) {
     email
     numberOfOrders
     phone
+    acceptsMarketing
     metafields(identifiers:[
       {key: "title", namespace: "custom"},{key: "birth_date", namespace: "facts"}]){
       id
