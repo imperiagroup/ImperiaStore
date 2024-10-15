@@ -27,18 +27,21 @@ onMounted(async () => {
     <div
       v-for="(address, index) in addressList[0]"
       :key="address.id"
-      class="card cursor-pointer border border-gray-300 rounded-lg shadow-sm p-4"
+      class="card cursor-pointer border border-gray-900 shadow-sm"
       @click="showModal(address.id)"
     >
       <div class="card-body">
         <p class="text-sm font-bold text-black">
           {{ address.isPrimary ? "Primary Address" : "Address" }}
         </p>
-        <div class="text-sm text-gray-700 inline-flex flex-wrap space-x-1">
-          <span>{{ address.name }},</span>
-          <span>{{ address.address1 }},</span>
-          <span>{{ address.city }},</span>
-          <span>{{ address.country }}</span>
+        <div
+          class="justify-start text-sm text-gray-900 inline-flex flex-wrap space-x-1"
+        >
+          <span
+            >{{ address.name }},{{ address.address1 }},{{ address.city }},{{
+              address.country
+            }}</span
+          >
         </div>
       </div>
     </div>

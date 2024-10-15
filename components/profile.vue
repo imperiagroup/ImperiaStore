@@ -18,7 +18,7 @@ const userInfo = ref({
   lastName: "",
   email: "",
   DOB: "",
-  phoneNumber: 0,
+  phoneNumber: "+1",
   acceptsMarketing: false,
   isnotification: false,
 });
@@ -104,7 +104,15 @@ const saveChanges = async () => {
     console.error("Error updating customer profile:", error);
   }
 };
-
+watch(
+  userInfo.value,
+  (newVal) => {
+    if (!newVal.phoneNumber.startsWith("+1")) {
+      userInfo.value.phoneNumber = "+1" + newVal.phoneNumber.replace(/\D/g, ""); // Remove non-digit characters
+    }
+  },
+  { deep: true }
+);
 onMounted(async () => {
   try {
     const accesstoken = localStorage.getItem("accessToken");
@@ -120,7 +128,7 @@ onMounted(async () => {
         firstName: data.customer.firstName,
         lastName: data.customer.lastName,
         DOB: data.customer.metafields[1]?.value,
-        phoneNumber: data.customer.phone,
+        phoneNumber: data.customer.phone ? data.customer.phone : "+1",
         acceptsMarketing: data.customer.acceptsMarketing,
         isnotification: localStorage.getItem("profileNotification"),
       };
