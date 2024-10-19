@@ -9,7 +9,7 @@
         :price="product.variants?.nodes[0]?.price.amount"
         :availableSize="product.variants?.nodes"
         :short_description="short_description"
-        :sizeGuideImg="product.metafields[6]?.reference.image.src"
+        :sizeGuideImg="sizeGuideImgSrc"
       >
         <Accordion
           :free_shipping_free_returns="free_shipping_free_returns"
@@ -34,6 +34,7 @@ const customData = ref([]);
 const short_description = ref("");
 const product_sustainability = ref("");
 const free_shipping_free_returns = ref("");
+const sizeGuideImgSrc = ref("");
 const payment = ref("");
 const styleWith = ref([]);
 const variants = ref([]);
@@ -47,6 +48,7 @@ onMounted(async () => {
     product.value = data.productByHandle;
     images.value = product.value.images?.edges.map((edge) => edge.node);
     customData.value = product.value.metafields;
+    sizeGuideImgSrc.value = product.value.metafields[6]?.reference?.image.src;
     short_description.value = customData.value.find(
       (obj) => obj.key === "short_description"
     ).value;
@@ -66,6 +68,7 @@ onMounted(async () => {
   } catch (error) {
   } finally {
     loading.value = false;
+    console.log("product: ", sizeGuideImgSrc.value);
   }
 });
 useSeoMeta({
