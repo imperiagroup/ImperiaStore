@@ -31,6 +31,14 @@ onMounted(async () => {
       @click="showModal(address.id)"
     >
       <div class="card-body">
+        <div class="flex flex-row justify-end">
+          <img
+            width="15"
+            src="trash-can.png"
+            @click="deleteAddress(address.id)"
+          />
+        </div>
+
         <p class="text-sm font-bold text-black">
           {{ address.isPrimary ? "Primary Address" : "Address" }}
         </p>
@@ -99,6 +107,8 @@ onMounted(async () => {
 </template>
 
 <script>
+import { Delete_address } from "~/queries/mututeCustomer";
+const { $shopifyClient } = useNuxtApp();
 export default {
   props: {
     id: String,
@@ -115,6 +125,22 @@ export default {
       const dialog = document.getElementById(this.id);
       if (dialog) {
         dialog.close();
+      }
+    },
+    async deleteAddress(id) {
+      try {
+        if (localStorage.getItem("accessToken")) {
+          const { data } = await $shopifyClient.request(Delete_address, {
+            variables: {
+              customerAccessToken: localStorage.getItem("accessToken"),
+              id: id,
+            },
+          });
+        }
+        alert("Address permanently Deleted");
+        window.location.reload();
+      } catch (error) {
+        console.error(error);
       }
     },
   },

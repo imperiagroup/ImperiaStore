@@ -9,6 +9,7 @@
         :price="product.variants?.nodes[0]?.price.amount"
         :availableSize="product.variants?.nodes"
         :short_description="short_description"
+        :sizeGuideImg="product.metafields[6]?.reference.image.src"
       >
         <Accordion
           :free_shipping_free_returns="free_shipping_free_returns"

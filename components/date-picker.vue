@@ -6,7 +6,7 @@
       v-model="selectedDate"
       @input="handleInput"
     />
-    <span v-if="isIPhone && !selectedDate" class="placeholder">DOB</span>
+    <span v-if="isIPhone && !selectedDate" class="placeholder">Birthday</span>
   </div>
 </template>
 

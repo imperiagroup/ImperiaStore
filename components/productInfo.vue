@@ -12,6 +12,7 @@ defineProps({
   availableSize: Array,
   short_description: String,
   variants: Array,
+  sizeGuideImg: String,
 });
 
 const size = ref("");
@@ -46,7 +47,7 @@ const addToCart = async () => {
     <div v-if="!isOutOfStock" class="form-control py-0 m-0 w-full px-2 text-xl">
       <label class="label">
         <span class="label-text uppercase">Size: (US)</span>
-        <!-- <SizeGuideModal :src="sizeGuideImg" /> -->
+        <SizeGuideModal :src="sizeGuideImg" />
       </label>
       <select
         class="select select-bordered text-[12px] md:text-[10px] uppercase border-black rounded-none"

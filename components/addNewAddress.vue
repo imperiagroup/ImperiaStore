@@ -136,7 +136,7 @@ const handleSubmission = async () => {
             Save Changes
           </button>
           <button class="btn btn-outline" @click="handleRemoveAddress()">
-            Remove Address
+            Clear Fields
           </button>
         </div>
       </div>

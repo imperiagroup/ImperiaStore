@@ -210,3 +210,13 @@ export const GET_RESETURL = `mutation GenerateAccountActivationUrl($customerID:S
     }
   }
 }`;
+
+export const Delete_address = `mutation customerAddressDelete($customerAccessToken: String!, $id: ID!) {
+  customerAddressDelete(customerAccessToken: $customerAccessToken, id: $id) {
+    deletedCustomerAddressId
+    userErrors {
+      field
+      message
+    }
+  }
+}`;
