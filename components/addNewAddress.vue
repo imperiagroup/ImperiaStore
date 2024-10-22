@@ -117,7 +117,7 @@ const handleSubmission = async () => {
           <input
             type="text"
             v-model="addressForm.state"
-            placeholder="Province/State/County"
+            placeholder="Province/State"
             class="w-full md:text-[10px] text-[12px] input uppercase input-bordered border-1 border-black focus:outline-none focus:border-gray-200 focus:ring-1 focus:ring-gray-600"
           />
           <input
@@ -126,7 +126,13 @@ const handleSubmission = async () => {
             placeholder="Zip Code"
             class="w-full md:text-[10px] text-[12px] input uppercase input-bordered border-1 border-black focus:outline-none focus:border-gray-200 focus:ring-1 focus:ring-gray-600"
           />
-          <countries-selector :selected-country="addressForm.country" />
+          <input
+            type="text"
+            v-model="addressForm.country"
+            placeholder="Country"
+            class="w-full md:text-[10px] text-[12px] input uppercase input-bordered border-1 border-black focus:outline-none focus:border-gray-200 focus:ring-1 focus:ring-gray-600"
+          />
+          <!-- <countries-selector :selected-country="addressForm.country" /> -->
         </div>
         <div class="grid grid-cols-2 gap-2 w-full justify-stretch align-middle">
           <button class="btn btn-primary" @click="handleSubmission()">
