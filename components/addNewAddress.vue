@@ -77,12 +77,12 @@ const handleSubmission = async () => {
 </script>
 <template>
   <div
-    class="card cursor-pointer bg-current border-[1px] border-black rounded-none text-neutral-content"
+    class="card cursor-pointer bg-black border-[1px] border-black rounded-none text-neutral-content"
     @click="showModal(id)"
   >
     <div class="card-body py-4">
       <div>
-        <p class="text-gray-400">Add New Address</p>
+        <p class="text-gray-100 text-center">Add New Address</p>
       </div>
     </div>
   </div>
